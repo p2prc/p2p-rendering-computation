@@ -19,12 +19,13 @@
         in
         {
           packages.default = callPackage ./. {
-            inherit (gomod2nix.legacyPackages.${system}) buildGoApplication {
-              postInstall = ''
-                echo $out
-                touch $out/bin/test.txt
-              '';
-            };
+            # inherit (gomod2nix.legacyPackages.${system}) buildGoApplication {
+              # postInstall = ''
+                # echo $out
+                # touch $out/bin/test.txt
+              # '';
+            #}
+              inherit (gomod2nix.legacyPackages.${system}) buildGoApplication;
           };
           devShells.default = callPackage ./shell.nix {
             inherit (gomod2nix.legacyPackages.${system}) mkGoEnv gomod2nix;
